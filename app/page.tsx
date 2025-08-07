@@ -1,9 +1,13 @@
+'use client'
+
 import React from 'react'
-import Home from './pages/home/home.tsx';
+import Home from '@/pages/Home/home';
+import { ThemeProvider } from 'styled-components';
+import { defaultTheme } from './styles/themes/default';
 export default function App() {
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
     <Home/>
-    </>
+    </ThemeProvider>
   )
 }
