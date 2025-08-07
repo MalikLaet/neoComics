@@ -6,11 +6,11 @@ import { ButtonSearch, HeaderContainer, Tittle } from './styled'
 export default function Header() {
   return (
     <HeaderContainer>
-        <Tittle>NeoComiics</Tittle>
+        <Tittle>NeoComics</Tittle>
 
         <div>
         <ButtonSearch>
-            O que voce procura?
+            O que você procura?
             <Search size={16}/>
         </ButtonSearch>
         </div>
