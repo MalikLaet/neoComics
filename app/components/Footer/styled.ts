@@ -7,7 +7,7 @@ export const FooterComponent = styled.footer`
   justify-content: space-between;
 
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 `;
 

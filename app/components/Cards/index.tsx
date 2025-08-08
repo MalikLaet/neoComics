@@ -1,16 +1,42 @@
-import Image from 'next/image'
-import React from 'react'
-import HQ from './hq.svg'
-import { ButtonCard, CardContariner, PriceCard, TittleCard } from './styled'
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { ButtonCard, CardContariner, PriceCard, TittleCard } from "./styled";
+import comicsMock from "@/app/mocks/comicsMock.json";
+
+export interface Comic {
+  id: number;
+  title: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+}
+
 export default function Cards() {
+  const [comics, setComics] = useState<Comic[]>([]);
+
+  useEffect(() => {
+    setComics(comicsMock);
+  }, []);
+
   return (
-    <div>
-      <CardContariner>
-        <Image src={HQ} alt='imagem da hq' width={200} height={200}/>
-        <TittleCard>Quarteto Fantastico</TittleCard>
-        <PriceCard>R$39,90</PriceCard>
-        <ButtonCard>Adicionar ao carrinho</ButtonCard>
-      </CardContariner>
-    </div>
-  )
+    <>
+      <h1>Quadrinhos da Marvel</h1>
+      <ul>
+        {comics.map((comic) => (
+          <CardContariner key={comic.id}>
+            <Image
+              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+              alt={comic.title}
+              width={150}
+              height={200}
+            />
+            <TittleCard>{comic.title}</TittleCard>
+            <PriceCard>R$ 39,90</PriceCard>
+            <ButtonCard>Adicionar ao carrinho</ButtonCard>
+          </CardContariner>
+        ))}
+      </ul>
+    </>
+  );
 }

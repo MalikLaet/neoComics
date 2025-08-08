@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Homem-Aranha: De Volta ao Lar",
+    "thumbnail": {
+      "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5e3d7536a63da",
+      "extension": "jpg"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Vingadores: A Queda",
+    "thumbnail": {
+      "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58dd080719806",
+      "extension": "jpg"
+    }
+  },
+  {
+    "id": 3,
+    "title": "X-Men: Fênix Negra",
+    "thumbnail": {
+      "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5d9cb29b09f2f",
+      "extension": "jpg"
+    }
+  }
+]
