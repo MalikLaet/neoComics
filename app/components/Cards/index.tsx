@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ButtonCard, CardContariner, PriceCard, TittleCard } from "./styled";
 import comicsMock from "@/app/mocks/comicsMock.json";
+import Link from "next/link";
 
 export interface Comic {
   id: number;
@@ -24,17 +25,19 @@ export default function Cards() {
       <h1>Quadrinhos da Marvel</h1>
       <ul>
         {comics.map((comic) => (
-          <CardContariner key={comic.id}>
-            <Image
-              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-              alt={comic.title}
-              width={150}
-              height={200}
-            />
+                  <Link key={comic.id} href={`/comics/${comic.id}`}>
+          <CardContariner>
+              <Image
+                src={`${comic.thumbnail.path}`}
+                alt={comic.title}
+                width={150}
+                height={200}
+              />
             <TittleCard>{comic.title}</TittleCard>
             <PriceCard>R$ 39,90</PriceCard>
             <ButtonCard>Adicionar ao carrinho</ButtonCard>
           </CardContariner>
+            </Link>
         ))}
       </ul>
     </>

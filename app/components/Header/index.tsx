@@ -7,7 +7,6 @@ export default function Header() {
   return (
     <HeaderContainer>
         <Tittle>NeoComics</Tittle>
-
         <div>
         <ButtonSearch>
             O que você procura?
