@@ -5,6 +5,8 @@ import Image from "next/image";
 import { MainContainer } from "../comics/styled";
 import Header from "../components/Header/index";
 import { useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "../styles/themes/default";
 
 export default function CartPage() {
   const [cartIds, setCartIds] = React.useState<number[]>([]);
@@ -18,17 +20,17 @@ export default function CartPage() {
 
   if (cartItems.length === 0) {
     return (
-      <>
+      <ThemeProvider theme={defaultTheme}>
         <Header />
         <MainContainer>
           <h2>Seu carrinho está vazio!</h2>
         </MainContainer>
-      </>
+      </ThemeProvider>
     );
   }
 
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
       <Header />
       <MainContainer>
         <h1>Seu Carrinho</h1>
@@ -45,6 +47,6 @@ export default function CartPage() {
           </div>
         ))}
       </MainContainer>
-    </>
+    </ThemeProvider>
   );
 }

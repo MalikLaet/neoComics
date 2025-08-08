@@ -3,6 +3,8 @@ import * as React from "react";
 import Image from "next/image";
 import comicsMock from "@/app/mocks/comicsMock.json";
 import { MainContainer } from "../styled";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "@/app/styles/themes/default";
 
 interface Params {
   params: Promise<{ id: string }>;
@@ -18,6 +20,7 @@ export default function ComicDetail({ params }: Params) {
   }
 
   return (
+    <ThemeProvider theme={defaultTheme}>
     <MainContainer>
       <h1>{comic.title}</h1>
       <Image
@@ -28,5 +31,6 @@ export default function ComicDetail({ params }: Params) {
       />
       <p>Preço: R$ 39,90</p>
     </MainContainer>
+    </ThemeProvider>
   );
 }
