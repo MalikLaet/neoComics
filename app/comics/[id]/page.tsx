@@ -9,7 +9,7 @@ interface Params {
 }
 
 export default function ComicDetail({ params }: Params) {
-  const unwrappedParams = React.use(params); // aqui o React.use "desembrulha" a promise
+  const unwrappedParams = React.use(params); 
   const comicId = Number(unwrappedParams.id);
   const comic = comicsMock.find((c) => c.id === comicId);
 
