@@ -24,6 +24,7 @@ export default function Header() {
 
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <input
+         data-cy="search-input"
           type="text"
           placeholder="O que você procura?"
           value={searchQuery}

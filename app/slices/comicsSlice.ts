@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import md5 from 'crypto-js/md5';
 
+export interface Price {
+  type: string;
+  price: number;
+}
+
 export interface Comic {
   id: number;
   title: string;
   thumbnail: { path: string; extension: string };
+  prices: Price[];
 }
 
 interface ComicsState {

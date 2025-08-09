@@ -7,6 +7,8 @@ import { RootState } from "@/app/store";
 import { MainContainer } from "../styled";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "@/app/styles/themes/default";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 interface ComicDetailProps {
   params: { id: string };
@@ -25,6 +27,7 @@ export default function ComicDetail({ params }: ComicDetailProps) {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+        <Header/>
       <MainContainer>
         <h1>{comic.title}</h1>
         <Image
@@ -35,6 +38,7 @@ export default function ComicDetail({ params }: ComicDetailProps) {
         />
         <p>Preço: R$ 39,90</p>
       </MainContainer>
+      <Footer/>
     </ThemeProvider>
   );
 }

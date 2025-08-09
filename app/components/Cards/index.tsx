@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { ButtonCard, CardContariner, PriceCard, TittleCard } from "./styled";
+import { ButtonCard, CardContariner, CardsWrapper, PriceCard, TittleCard, TittlePage } from "./styled";
 
 import Link from "next/link";
 
@@ -31,38 +31,41 @@ export default function Cards() {
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <h1>Quadrinhos da Marvel</h1>
-      <ul>
-        {filtered.map((comic) => (
-          <div key={comic.id}>
-            <Link href={`/comics/${comic.id}`} style={{textDecoration: 'none', color: "#121214"}}>
-              <CardContariner>
-                {comic.thumbnail && (
-                  <Image
-                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                    alt={comic.title}
-                    width={150}
-                    height={200}
-                  />
-                )}
-                <TittleCard>{comic.title}</TittleCard>
-                <PriceCard>R$ 39,90</PriceCard>
-              </CardContariner>
-            </Link>
-            <ButtonCard
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleAddToCart(comic);
-              }}
-            >
-              Adicionar ao carrinho
-            </ButtonCard>
-          </div>
-        ))}
-      </ul>
-    </ThemeProvider>
-  );
+return (
+  <ThemeProvider theme={defaultTheme}>
+    <TittlePage>Quadrinhos da Marvel</TittlePage>
+    <CardsWrapper>
+      {filtered.map((comic) => (
+        <CardContariner key={comic.id}>
+          <Link href={`/comics/${comic.id}`} style={{ textDecoration: 'none', color: "#121214" }}>
+            <>
+              {comic.thumbnail && (
+                <Image
+                  src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                  alt={comic.title}
+                  width={150}
+                  height={200}
+                />
+              )}
+              <TittleCard>{comic.title}</TittleCard>
+              <PriceCard>R$39,90</PriceCard>
+            </>
+          </Link>
+
+          <ButtonCard
+          data-cy="add-to-cart"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleAddToCart(comic);
+            }}
+          >
+            Adicionar ao carrinho
+          </ButtonCard>
+        </CardContariner>
+      ))}
+    </CardsWrapper>
+  </ThemeProvider>
+);
+
 }
