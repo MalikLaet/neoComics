@@ -16,7 +16,6 @@ export const CardContariner = styled.div`
 
 export const TittleCard = styled.p`
     font-weight:bold;
-
 `;
 
 export const PriceCard = styled.p`

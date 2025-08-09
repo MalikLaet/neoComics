@@ -13,10 +13,13 @@ import { ThemeProvider } from "styled-components";
 
 export default function Cards() {
   const dispatch = useDispatch<AppDispatch>();
-  const { comics, loading, error } = useSelector(
+  const { comics, loading, error, searchQuery } = useSelector(
     (state: RootState) => state.comics
   );
 
+  const filtered = comics.filter((comic) =>
+    comic.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   useEffect(() => {
     dispatch(fetchComics());
   }, [dispatch]);
@@ -32,9 +35,9 @@ export default function Cards() {
     <ThemeProvider theme={defaultTheme}>
       <h1>Quadrinhos da Marvel</h1>
       <ul>
-        {comics.map((comic) => (
-          <li key={comic.id}>
-            <Link href={`/comics/${comic.id}`}>
+        {filtered.map((comic) => (
+          <div key={comic.id}>
+            <Link href={`/comics/${comic.id}`} style={{textDecoration: 'none', color: "#121214"}}>
               <CardContariner>
                 {comic.thumbnail && (
                   <Image
@@ -57,7 +60,7 @@ export default function Cards() {
             >
               Adicionar ao carrinho
             </ButtonCard>
-          </li>
+          </div>
         ))}
       </ul>
     </ThemeProvider>

@@ -11,18 +11,20 @@ interface ComicsState {
   comics: Comic[];
   loading: boolean;
   error: string | null;
+  searchQuery: string;
 }
 
 const initialState: ComicsState = {
   comics: [],
   loading: false,
   error: null,
+  searchQuery: "",
 };
 
 
 export const fetchComics = createAsyncThunk('comics/fetchComics', async () => {
-  const publicKey = 'cca0fda9ccd59784c51d1235a0d916e4';
-  const privateKey = 'e2836998fb198bd9fc62356ee436afda64b09c5c';
+const publicKey = process.env.NEXT_PUBLIC_MARVEL_PUBLIC_KEY;
+const privateKey = process.env.NEXT_PUBLIC_MARVEL_PRIVATE_KEY;
   const ts = Date.now().toString();
   const hash = md5(ts + privateKey + publicKey).toString();
 
@@ -31,7 +33,6 @@ export const fetchComics = createAsyncThunk('comics/fetchComics', async () => {
   );
   if (!res.ok) throw new Error('Erro na requisição');
   const data = await res.json();
-  // filtrar quadrinhos que têm imagem
   const filtered = data.data.results.filter(
     (comic: Comic) => !comic.thumbnail.path.includes('image_not_available')
   );
@@ -41,7 +42,11 @@ export const fetchComics = createAsyncThunk('comics/fetchComics', async () => {
 const comicsSlice = createSlice({
   name: 'comics',
   initialState,
-  reducers: {},
+  reducers: {
+  setSearchQuery(state, action) {
+    state.searchQuery = action.payload;
+  }
+},
   extraReducers: (builder) => {
     builder
       .addCase(fetchComics.pending, (state) => {
@@ -59,4 +64,5 @@ const comicsSlice = createSlice({
   },
 });
 
+export const { setSearchQuery } = comicsSlice.actions;
 export default comicsSlice.reducer;
