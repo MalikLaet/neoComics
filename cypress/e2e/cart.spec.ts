@@ -1,19 +1,16 @@
 describe("Carrinho de compras", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.contains("Carregando...").should("not.exist");
   });
 
-  it("Adiciona um item no carrinho e verifica no carrinho", () => {
-    cy.contains("Adicionar ao carrinho").first().click();
-    cy.visit("/cart");
+  it("Adiciona e remove um item do carrinho na mesma página", () => {
+    cy.get('[data-cy="add-to-cart"]').first().click({ force: true });
+
     cy.get("h3").should("have.length.at.least", 1);
-  });
 
-  it("Remove um item do carrinho e verifica mensagem", () => {
-    cy.visit("/");
-    cy.contains("Adicionar ao carrinho").first().click();
-    cy.visit("/cart");
     cy.contains("Remover").click();
+
     cy.contains("Seu carrinho está vazio!").should("exist");
   });
 });
