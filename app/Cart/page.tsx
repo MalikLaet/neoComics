@@ -1,57 +1,89 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { MainContainer } from "../comics/styled";
 import Header from "../components/Header/index";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "../styles/themes/default";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/app/store";
-import { removeFromCart } from "../slices/cartSlice";
+import { RootState } from "@/app/store";
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "../slices/cartSlice";
 import Footer from "../components/Footer";
-import { ButtonRemove, InfoCard, PriceCard } from "./styled";
+import { BackHomeButton, ButtonRemove, CartSummary, ComicImage, ContentWrapper, InfoCard, PriceCard, QuantityButton, QuantityControls, QuantityNumber, SummaryRow, TitleCard } from "./styled";
+import { useRouter } from "next/navigation";
+
 export default function CartPage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  
+const dispatch = useDispatch();
+const router = useRouter();
+const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  if (cartItems.length === 0) {
-    return (
-      <ThemeProvider theme={defaultTheme}>
-        <Header />
-        <p>Seu carrinho está vazio!</p>
-        <Footer />
-      </ThemeProvider>
-    );
-  }
+const handleIncrease = (id: number) => {
+  dispatch(increaseQuantity(id));
+};
 
+const handleDecrease = (id: number) => {
+  dispatch(decreaseQuantity(id));
+};
+
+const totalPrice = cartItems.reduce(
+  (acc, item) => acc + (item.prices?.[0]?.price || 0) * item.quantity,
+  0
+);
+
+return (
+  <ThemeProvider theme={defaultTheme}>
+    <Header />
+    <MainContainer>
+      <h1>Seu Carrinho</h1>
+     {cartItems.map((comic) => {
+  const unitPrice = comic.prices?.[0]?.price || 0;
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Header />
-      <MainContainer>
-        <h1>Seu Carrinho</h1>
-        {cartItems.map((comic) => (
-          <InfoCard key={comic.id}>
-            <h3>{comic.title}</h3>
-            {comic.thumbnail &&
-            comic.thumbnail.path &&
-            comic.thumbnail.extension ? (
-              <Image
-                src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                alt={comic.title}
-                width={150}
-                height={200}
-              />
-            ) : (
-              <p>Imagem não disponível</p>
-            )}
-            <ButtonRemove onClick={() => dispatch(removeFromCart(comic.id))}>
-              Remover
-            </ButtonRemove>
-            <PriceCard>Preço: R$ 39,90</PriceCard>
-          </InfoCard>
-        ))}
-      </MainContainer>
-      <Footer />
-    </ThemeProvider>
-  );
+    <InfoCard key={comic.id}>
+      <ContentWrapper>
+      {comic.thumbnail?.path && comic.thumbnail?.extension ? (
+        <ComicImage
+          src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+          alt={comic.title}
+          width={150}
+          height={200}
+        />
+      ) : (
+        <p>Imagem não disponível</p>
+      )}
+
+      <TitleCard>{comic.title}</TitleCard>
+
+      <QuantityControls>
+        <QuantityButton onClick={() => handleDecrease(comic.id)}>-</QuantityButton>
+        <QuantityNumber>{comic.quantity}</QuantityNumber>
+        <QuantityButton onClick={() => handleIncrease(comic.id)}>+</QuantityButton>
+      </QuantityControls>
+
+      <ButtonRemove onClick={() => dispatch(removeFromCart(comic.id))}>
+        Remover
+      </ButtonRemove>
+
+      <PriceCard>
+        Preço: R$ {(unitPrice * comic.quantity).toFixed(2)}
+      </PriceCard>
+        </ContentWrapper>
+    </InfoCard>
+  )
+})}
+
+
+      <CartSummary>
+        <SummaryRow>
+          <span>Total:</span>
+          <span>R$ {totalPrice.toFixed(2)}</span>
+        </SummaryRow>
+
+        <BackHomeButton onClick={() => router.push('/')}>
+          Voltar para Home
+        </BackHomeButton>
+      </CartSummary>
+    </MainContainer>
+    <Footer />
+  </ThemeProvider>
+);
 }

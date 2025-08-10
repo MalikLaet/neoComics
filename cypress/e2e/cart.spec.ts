@@ -1,7 +1,7 @@
 describe("Carrinho de compras", () => {
   beforeEach(() => {
     cy.visit("/");
-    cy.contains("Carregando...").should("not.exist");
+    cy.contains("Carregando... ").should("not.exist");
   });
 
   it("Adiciona e remove um item do carrinho na mesma página", () => {

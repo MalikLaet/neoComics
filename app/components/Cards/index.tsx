@@ -1,6 +1,5 @@
-import Image from "next/image";
 import React, { useEffect } from "react";
-import { ButtonCard, CardContariner, CardsWrapper, PriceCard, TittleCard, TittlePage } from "./styled";
+import { ButtonCard, CardContariner, CardImage, CardsWrapper, PriceCard, TittleCard, TittlePage } from "./styled";
 
 import Link from "next/link";
 
@@ -40,7 +39,7 @@ return (
           <Link href={`/comics/${comic.id}`} style={{ textDecoration: 'none', color: "#121214" }}>
             <>
               {comic.thumbnail && (
-                <Image
+                <CardImage
                   src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                   alt={comic.title}
                   width={150}
@@ -48,7 +47,8 @@ return (
                 />
               )}
               <TittleCard>{comic.title}</TittleCard>
-              <PriceCard>R$39,90</PriceCard>
+              <PriceCard>R${comic.prices[0].price}</PriceCard>
+
             </>
           </Link>
 

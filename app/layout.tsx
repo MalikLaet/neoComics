@@ -2,7 +2,7 @@
 
 import { Provider } from "react-redux"
 import { store } from "./store"
-
+import { GlobalStyle } from "./styles/global"
 
 export default function RootLayout({
   children,
@@ -10,8 +10,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" >
+      <body >
+         <GlobalStyle />
         <Provider store={store}>
           {children}
         </Provider>

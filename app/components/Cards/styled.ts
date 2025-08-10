@@ -11,16 +11,24 @@ export const CardsWrapper = styled.div`
 export const CardContariner = styled.div`
   background-color: #d9d9d9;
   border-radius: 24px;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0.5rem 0;
 
-  flex: 1 1 100%;
   max-width: 50%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom:3rem;
+  justify-content: space-between;
+  gap: 1rem;
+
+  transition: transform 0.3s ease-in-out, padding 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    padding: 0.8rem;
+  }
+  margin-bottom: 3rem;
   @media (min-width: 600px) {
     flex: 1 1 45%;
     max-width: 45%;
@@ -32,9 +40,16 @@ export const CardContariner = styled.div`
   }
 `;
 
+export const CardImage = styled.img`
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem 0;
+`;
+
 export const TittlePage = styled.h1`
-  padding-left:1rem;
-`
+  padding: 2rem;
+`;
 
 export const TittleCard = styled.p`
   font-weight: bold;
@@ -59,6 +74,13 @@ export const ButtonCard = styled.button`
   padding: 0.4rem;
   margin-bottom: 0.6rem;
   width: 90%;
+
+  transition: transform 0.3s ease-in-out, padding 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    padding: 0.8rem;
+  }
 
   @media (min-width: 600px) {
     padding: 0.8rem;

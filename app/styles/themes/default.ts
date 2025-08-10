@@ -9,8 +9,9 @@ export const defaultTheme = {
     'gray-700': '#29292E',
     'gray-800': '#202024',
     'gray-900': '#121214',
-    'slate-bg': '#62748E',
+    'slate-bg': 'oklch(42.4% 0.199 265.638)',
     'green-button': '#00C950',
   
     'red-text': '#FB2C36',
+
   } as const

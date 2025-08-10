@@ -9,6 +9,7 @@ export const FooterComponent = styled.footer`
   width: 100%;
   position: fixed;
   bottom: 0;
+  padding: 1rem 0;
 `;
 
 export const TextName = styled.p`
