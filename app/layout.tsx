@@ -1,3 +1,5 @@
+"use client";
+
 import { GlobalStyle } from "./styles/global";
 import { Provider } from "react-redux";
 import { store } from "./store";
