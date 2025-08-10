@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./@types"],
     "esModuleInterop": true,
     "baseUrl": ".",
     "target": "ES2017",
