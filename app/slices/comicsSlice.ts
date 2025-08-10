@@ -29,7 +29,7 @@ const initialState: ComicsState = {
 
 
 export const fetchComics = createAsyncThunk('comics/fetchComics', async () => {
-const publicKey = process.env.NEXT_PUBLIC_MARVEL_PUBLIC_KEY;
+const publicKey = "cca0fda9ccd59784c51d1235a0d916e4";
 const privateKey = process.env.NEXT_PUBLIC_MARVEL_PRIVATE_KEY;
   const ts = Date.now().toString();
   const hash = md5(ts + privateKey + publicKey).toString();
