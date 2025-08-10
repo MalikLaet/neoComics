@@ -3,14 +3,16 @@ import { GlobalStyle } from "./styles/global";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
         <GlobalStyle />
-        <Provider store={store}>
-          {children}
-        </Provider>
+        <Provider store={store}>{children}</Provider>
       </body>
     </html>
   );
