@@ -56,7 +56,6 @@ return (
           data-cy="add-to-cart"
             onClick={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               handleAddToCart(comic);
             }}
           >

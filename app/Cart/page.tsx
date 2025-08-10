@@ -51,7 +51,7 @@ return (
         <p>Imagem não disponível</p>
       )}
 
-      <TitleCard>{comic.title}</TitleCard>
+      <TitleCard data-cy="comic-title">{comic.title}</TitleCard>
 
       <QuantityControls>
         <QuantityButton onClick={() => handleDecrease(comic.id)}>-</QuantityButton>

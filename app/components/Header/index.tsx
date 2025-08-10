@@ -32,7 +32,7 @@ export default function Header() {
     />
   </SearchWrapper>
 
-  <Link href="/Cart">
+  <Link data-cy="open-cart" href="/Cart">
     <ShoppingCart color="#121214" size="1.8rem" />
   </Link>
 </HeaderContainer>
