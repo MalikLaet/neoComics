@@ -26,7 +26,7 @@ export const Tittle = styled.h1`
 
 export const SearchWrapper = styled.div`
   flex-grow: 1;
-  max-width: 400px; 
+  max-width: 400px;
 
   display: flex;
   align-items: center;
@@ -48,4 +48,12 @@ export const SearchInput = styled.input`
     font-size: 1.2rem;
     padding: 10px 15px;
   }
+`;
+
+export const QuantifyCart = styled.span`
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
 `;
