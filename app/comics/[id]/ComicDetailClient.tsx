@@ -34,7 +34,7 @@ export default function ComicDetailClient({ comicId }: Props) {
         />
       </div>
       <h1>{comic.title}</h1>
-      <p>Preço: R$ {(comic.prices?.[0]?.price || 39.9).toFixed(2)}</p>
+      <p>Preço: R$ {(comic.prices?.[0]?.price ).toFixed(2)}</p>
     </MainContainer>
   );
 }

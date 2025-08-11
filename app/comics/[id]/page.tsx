@@ -8,11 +8,11 @@ import Footer from "@/app/components/Footer";
 import ComicDetailClient from "./ComicDetailClient";
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default function ComicDetail({ params }: PageProps) {
-  const { id } = React.use(params);
+  const { id } = params;
 
   const comicId = Number(id);
 

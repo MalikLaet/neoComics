@@ -10,7 +10,7 @@ export const MainContainer = styled.main`
   min-height: 80vh;
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0.4rem auto;
 
   h1 {
     font-size: 2rem;
